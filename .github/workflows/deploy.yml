@@ -1,4 +1,4 @@
-name: Actualización de producción
+name: Despliegue automático a producción
 
 on:
   push:
@@ -6,14 +6,26 @@ on:
       - main
 
 jobs:
-  deploy:
+  pruebas_y_despliegue:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout código
+      - name: 📥 Clonar repositorio
         uses: actions/checkout@v3
 
-      - name: Deploy via SSH
+      - name: 🔧 Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: 📦 Instalar dependencias
+        run: npm install
+
+      - name: ✅ Ejecutar pruebas con Jest
+        run: npm test
+
+      - name: 🚀 Desplegar en servidor vía SSH
+        if: success()
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}

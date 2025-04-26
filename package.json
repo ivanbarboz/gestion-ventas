@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "node crud-vendedores/app.js",
     "start": "node crud-vendedores/app.js"
   },
@@ -26,5 +26,9 @@
     "url": "https://github.com/CarlTheBoss/NODEDEMO/issues"
   },
   "homepage": "https://github.com/CarlTheBoss/NODEDEMO#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.1.0"
+  }
 }
